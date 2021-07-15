@@ -33,6 +33,7 @@
                             </div>
                             <!-- form start -->
                             <form method="post">
+                                @csrf
                                 <div class="card-body">
                                     @if($errors->any())
                                         <ul>
