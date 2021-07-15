@@ -458,6 +458,8 @@ Route::group(['middleware'=>'auth'],function(){
     /** route for Order management */
     Route::get('create-order', 'Merchandise\OrderController@index')->name('order-ui');
     Route::post('create-order', 'Merchandise\OrderController@createOrder')->name('order-create');
+    Route::get('order-elements/{id}', 'Merchandise\OrderController@elements')->name('order-element-ui');
+    Route::post('order-elements', 'Merchandise\OrderController@addElements')->name('order-element');
 });
 
 //ajax routes starts here
