@@ -347,8 +347,6 @@ Route::group(['middleware'=>'auth'],function(){
     /** AJAX CODES*/
     Route::get('merchandise/product-cost-sheet/search','Merchandise\ProductCostSheetController@search')->name('search.style');
     Route::get('merchandise/budget-sheet/search','Merchandise\BudgetSheetController@search')->name('budget.search.style');
-
-
 });
 
 Route::group(['middleware'=>'auth'],function(){
@@ -413,7 +411,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('report/view-Store-booking/{id}','store\booking\StoreBookingController@details');
 
     Route::get('booking-report/{id}/print','store\booking\StoreBookingController@print');
-    
+
     Route::get('store/inhouse-report/{style_no}/{date_range}','store\booking\StoreBookingController@inhouseReport');
     Route::get('store/issue-report/{style_no}/{date_range}','store\booking\StoreBookingController@issueReport');
     Route::get('store/supplier-wise-products/{data}','store\booking\StoreBookingController@supplierWiseProducts');
@@ -455,21 +453,24 @@ Route::group(['middleware'=>'auth'],function(){
 //    report for store department ends here
 
 //    route for store module ends here
+
+
+    /** route for Order management */
+    Route::get('create-order', 'Merchandise\OrderController@index')->name('order-ui');
+    Route::post('create-order', 'Merchandise\OrderController@createOrder')->name('order-create');
 });
 
-    //ajax routes starts here
-    Route::get('get-order-list','store\booking\StoreBookingController@getOrderList');
-    Route::get('get-order-list-inventory','store\inventory\StoreInventoryController@getOrderListInventory');
-    Route::get('get-requisition','store\requisition\StoreRequisitionController@getRequisition');
-    //ajax routes ends here
+//ajax routes starts here
+Route::get('get-order-list','store\booking\StoreBookingController@getOrderList');
+Route::get('get-order-list-inventory','store\inventory\StoreInventoryController@getOrderListInventory');
+Route::get('get-requisition','store\requisition\StoreRequisitionController@getRequisition');
+//ajax routes ends here
 
-/** time and planning Routes changing By Asiful Islam Sakib*/ 
+/** time and planning Routes changing By Asiful Islam Sakib*/
 Route::group(['middleware'=>'auth'],function(){
     /** time and planning Routes  By Nishat Chowdhury*/
     Route::get('actionPlan/acc_tna','Merchandise\ActionPlanController@acc_tna');
     Route::get('actionPlan/pre_production_act','Merchandise\ActionPlanController@pre_production_act');
-
-
 
 
     Route::get('actionPlan/create','Merchandise\ActionPlanController@create');
@@ -604,35 +605,21 @@ Route::group(['middleware'=>'auth'],function(){
     Route::delete('production/order-progress-delete/{id}','Production\OrderProgressController@delete');
     Route::get('production/get-order-progress/{data}','Production\OrderProgressController@getForecast');
     Route::post('production/store-order-progress','Production\OrderProgressController@store');
-    
-
-
 
     /* Daily Section Wise */
     Route::get('production/daily-section-wise-report','Production\ForecastController@dailySectionWiseReport');
     Route::post('production/daily-section-wise-report','Production\ForecastController@searchDailySectionWiseReport');
 
-
-    
     Route::get('daily-analysis-report/style-review/create','Planning\DailyAnalysisReportController@create');
 });
-
-
-
-
-
-
-
-
-
 
 Route::get('migrate',function(){
         Artisan::call('migrate');
         return redirect()->back();
     });
 
-    Route::get('optimize',function(){
-        Artisan::call('config:cache');
-        Artisan::call('cache:clear');
-        Artisan::call('view:clear');
-    });
+Route::get('optimize',function(){
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+});
