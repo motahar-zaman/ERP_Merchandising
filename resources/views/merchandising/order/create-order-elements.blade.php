@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="row mt-5 mb-3 element_add_area">
                                         <div class="col-md-2 offset-4">
-                                            <a href="javascript:;" class="btn btn-outline-info add_element">Add Elements</a>
+                                            <a href="javascript:;" class="btn btn-outline-info add_element"><i class="fa fa-plus" aria-hidden="true"> </i> Add Elements</a>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,6 @@
             $('.add_element').on('click', function(){
                 var content = $('#elements').html();
                 $('.element_add_area').before(content);
-                console.log(content);
             })
         });
     </script>
