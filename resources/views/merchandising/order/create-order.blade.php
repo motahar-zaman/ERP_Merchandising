@@ -54,7 +54,7 @@
                                     <div class="form-group row {{ $errors->has('day_range') ? 'has-error' : '' }}">
                                         <label for="day_range" class="col-md-2 offset-1 control-label">Day Range<span class="text-danger">*</span></label>
                                         <div class="col-md-8">
-                                            <input type="number" name="day_range" id="day_range" min="1" max="500" step="1" placeholder="number of days" value="">
+                                            <input type="number" name="day_range" id="day_range" min="1" max="500" step="1" placeholder="number of days" value="120">
                                             @if($errors->has('day_range'))<span class="help-block text-danger">{{ $errors->first('day_range') }}</span>@endif
                                         </div>
                                     </div>
