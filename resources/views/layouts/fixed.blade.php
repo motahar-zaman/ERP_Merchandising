@@ -80,9 +80,9 @@
         }
 
         span.select2-selection__arrow {  margin-top: 4px;  }
-        a,h1,h2,h3,h4,h5,h6,span,p,strong,select,b,i,input,textarea,li,label,td,th,button,radio,checkbox,div{
+        /*a,h1,h2,h3,h4,h5,h6,span,p,strong,select,b,i,input,textarea,li,label,td,th,button,radio,checkbox,div{
             text-transform: uppercase;
-        }
+        }*/
         .select2{
             width: 100%!important;
         }
