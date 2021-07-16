@@ -20,6 +20,6 @@ class OrderController extends Controller
     }
 
     public function elements($orderId){
-        return view('merchandising/order/create-elements')-> with('orderId', $orderId);
+        return view('merchandising/order/create-order-elements')-> with('orderId', $orderId);
     }
 }
