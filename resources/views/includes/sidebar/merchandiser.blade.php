@@ -5,15 +5,15 @@
     </a>
     <ul class="nav nav-treeview" style="background-color: #292929">
         <li class="nav-item">
-            <a href="{{ url('create-order') }}" class="nav-link {{ isActive('create-order') }}">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Order</p>
-            </a>
-        </li>
-        <li class="nav-item">
             <a href="{{ url('merchandise/manage-buyer') }}" class="nav-link {{ isActive('merchandise/manage-buyer') }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Buyer</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url('create-order') }}" class="nav-link {{ isActive('create-order') }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Order</p>
             </a>
         </li>
         <li class="nav-item">
