@@ -83,7 +83,22 @@
                                             @if($errors->has('day_range'))<span class="help-block text-danger">{{ $errors->first('day_range') }}</span>@endif
                                         </div>
                                     </div>
+
+                                    <div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">
+                                        <label for="order_quantity" class="col-md-2 offset-1 control-label">Size Quantity<span class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="size[]" placeholder="size" value="">
+                                            <span class="mr-2"></span>
+                                            <input type="number" name="quantity[]" step="1" placeholder="quantity" value="">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 element_add_area">
+                                        <div class="col-md-2 offset-4">
+                                            <a href="javascript:;" class="btn btn-outline-info add_size_quantity"><i class="fa fa-plus" aria-hidden="true"> </i> Add Size</a>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="card-footer text-center">
                                     {{Form::submit('Submit',['class'=>'btn btn-success'])}}
                                     {{Form::reset('Reset',['class'=>'btn btn-danger'])}}
@@ -96,6 +111,16 @@
             </div>
         </div>
     </section>
+    <div id="size-quantity" class="d-none">
+        <div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">
+            <label for="order_quantity" class="col-md-2 offset-1 control-label">Size Quantity<span class="text-danger">*</span></label>
+            <div class="col-md-8">
+                <input type="text" name="size[]" placeholder="size" value="">
+                <span class="mr-2"></span>
+                <input type="number" name="quantity[]" step="1" placeholder="quantity" value="">
+            </div>
+        </div>
+    </div>
     <!-- /.content -->
 
 @stop
@@ -114,10 +139,11 @@
 @section('script')
     <!-- page script -->
     <script>
-        function resetInputFields(){
-            $("#order_name").value("");
-            $("#day_range").value("");
-            $("#buyer").value("");
-        }
+        $(document).ready(function(){
+            $('.add_size_quantity').on('click', function(){
+                var content = $('#size-quantity').html();
+                $('.element_add_area').before(content);
+            })
+        });
     </script>
 @stop
