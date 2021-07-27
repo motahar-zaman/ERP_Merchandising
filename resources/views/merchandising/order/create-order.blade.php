@@ -59,6 +59,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group row {{ $errors->has('delivery_date') ? 'has-error' : '' }}">
+                                        <label for="delivery_date" class="col-md-3 offset-1 control-label">delivery_date<span class="text-danger">*</span></label>
+                                        <div class="col-md-8 pl-0 pr-0">
+                                            <input type="date" name="delivery_date" id="delivery_date" placeholder="dd-mm-yyyy" value="" required>
+                                            @if($errors->has('delivery_date'))<span class="help-block text-danger">{{ $errors->first('delivery_date') }}</span>@endif
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row {{ $errors->has('buyer') ? 'has-error' : '' }}">
                                         <label for="buyer" class="col-md-3 offset-1 control-label">Buyer Select<span class="text-danger">*</span></label>
                                         <div class="col-md-3 pl-0 pr-0">
