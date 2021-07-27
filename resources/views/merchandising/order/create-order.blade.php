@@ -59,14 +59,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row {{ $errors->has('delivery_date') ? 'has-error' : '' }}">
-                                        <label for="delivery_date" class="col-md-3 offset-1 control-label">delivery_date<span class="text-danger">*</span></label>
-                                        <div class="col-md-8 pl-0 pr-0">
-                                            <input type="date" name="delivery_date" id="delivery_date" placeholder="dd-mm-yyyy" value="" required>
-                                            @if($errors->has('delivery_date'))<span class="help-block text-danger">{{ $errors->first('delivery_date') }}</span>@endif
-                                        </div>
-                                    </div>
-
                                     <div class="form-group row {{ $errors->has('buyer') ? 'has-error' : '' }}">
                                         <label for="buyer" class="col-md-3 offset-1 control-label">Buyer Select<span class="text-danger">*</span></label>
                                         <div class="col-md-3 pl-0 pr-0">
@@ -87,11 +79,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row {{ $errors->has('day_range') ? 'has-error' : '' }}">
-                                        <label for="day_range" class="col-md-3 offset-1 control-label">Day Range</label>
-                                        <div class="col-md-8 pl-0 pr-0">
-                                            <input type="number" name="day_range" id="day_range" min="1" max="500" step="1" placeholder="number of days" value="120">
-                                            @if($errors->has('day_range'))<span class="help-block text-danger">{{ $errors->first('day_range') }}</span>@endif
+                                    <div class="form-group row {{ $errors->has('delivery_date') ? 'has-error' : '' }}">
+                                        <label for="delivery_date" class="col-md-3 offset-1 control-label">Delivery Date<span class="text-danger">*</span></label>
+                                        <div class="col-md-4 pl-0 pr-0">
+                                            <input onchange="calculateDayRange()" type="date" name="delivery_date" id="delivery_date" placeholder="dd-mm-yyyy" value="" required>
+                                            @if($errors->has('delivery_date'))<span class="help-block text-danger">{{ $errors->first('delivery_date') }}</span>@endif
+                                        </div>
+                                        <div class="col-md-4 pl-0 pr-0">
+                                            <label>Left <span id="day_range">0</span> days </label>
                                         </div>
                                     </div>
 
@@ -107,8 +102,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">
-                                        <label for="order_quantity" class="col-md-3 offset-1 control-label">Size Quantity</label>
+                                    <div class="form-group row">
+                                        <label for="order_quantity" class="col-md-3 offset-1 control-label">Size & Quantity</label>
                                         <div class="col-md-8 pl-0 pr-0">
                                             <input type="text" name="size[]" placeholder="size" value="">
                                             <span class="mr-2"></span>
@@ -116,11 +111,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row element_add_area">
-                                        <label for="total_quantity" class="col-md-3 offset-1 control-label">Total Quantity</label>
-                                        <div class="col-md-8 pl-0 pr-0">
-                                            <input type="text" name="total_quantity" id="total_quantity" value="0" readonly>
-                                        </div>
+                                    <div class="row element_add_area justify-content-center mb-3">
+                                        <label>Total Quantity = <span id="total_quantity">0</span> Pcs</label>
                                     </div>
 
                                     <div class="row mb-3">
@@ -162,13 +154,13 @@
     <script>
         $(document).ready(function(){
             $('.add_size_quantity').on('click', function(){
-                var content = '<div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">'+
-                    '<label for="order_quantity" class="col-md-3 offset-1 control-label">Size Quantity<span class="text-danger">*</span></label>'+
-                    '<div class="col-md-8 pl-0 pr-0">'+
-                    '<input type="text" name="size[]" placeholder="size" value="">'+
-                    '<span class="mr-2"></span>'+
-                    '<input onchange="totalQuantity()" class="quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="0">'+
-                    '</div>'+
+                var content = '<div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">' +
+                    '<label for="order_quantity" class="col-md-3 offset-1 control-label">Size & Quantity</label>' +
+                    '<div class="col-md-8 pl-0 pr-0">' +
+                    '<input type="text" name="size[]" placeholder="size" value="">' +
+                    '<span class="mr-2"></span>' +
+                    '<input onchange="totalQuantity()" class="quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="0">' +
+                    '</div>' +
                     '</div>';
                 $('.element_add_area').before(content);
             })
@@ -176,16 +168,21 @@
 
         function totalQuantity(){
             let sum = 0;
-            /*let values = $("input[name='quantity[]']").map(function(){return parseFloat($(this).val());}).get();
-            for (let i = 0; i < values.length; i++) {
-                sum += values[i];
-            }*/
 
             $('.quantity').each(function (index, element) {
                 sum += parseFloat($(element).val());
             });
 
-            $("#total_quantity").val(sum);
+            $("#total_quantity").html(sum);
+        }
+
+        function calculateDayRange(){
+            let date = new Date($("#delivery_date").val());
+            let date2 = new Date();
+            let range = date.getTime() - date2.getTime();
+            let rangeDay = Math.round(range / (1000 * 3600 * 24));
+
+            $("#day_range").html(rangeDay);
         }
     </script>
 @stop
