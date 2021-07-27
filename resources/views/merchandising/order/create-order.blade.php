@@ -35,33 +35,33 @@
                             <form method="post">
                                 @csrf
                                 <div class="card-body">
-                                    @if($errors->any())
-                                        <ul>
-                                            @foreach($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-
-                                    <div class="form-group row {{ $errors->has('order_name') ? 'has-error' : '' }}">
-                                        <label for="order_name" class="col-md-2 offset-1 control-label">Order Name<span class="text-danger">*</span></label>
-                                        <div class="col-md-8">
-                                            <input type="text" name="order_name" id="order_name" placeholder="place a name" value="">
-                                            @if($errors->has('order_name'))<span class="help-block text-danger">{{ $errors->first('order_name') }}</span>@endif
+                                    <div class="form-group row {{ $errors->has('style_name') ? 'has-error' : '' }}">
+                                        <label for="style_name" class="col-md-3 offset-1 control-label">Style Name<span class="text-danger">*</span></label>
+                                        <div class="col-md-8 pl-0 pr-0">
+                                            <input type="text" name="style_name" id="style_name" placeholder="style name" value="" required>
+                                            @if($errors->has('style_name'))<span class="help-block text-danger">{{ $errors->first('style_name') }}</span>@endif
                                         </div>
                                     </div>
 
-                                    <div class="form-group row {{ $errors->has('day_range') ? 'has-error' : '' }}">
-                                        <label for="day_range" class="col-md-2 offset-1 control-label">Day Range<span class="text-danger">*</span></label>
-                                        <div class="col-md-8">
-                                            <input type="number" name="day_range" id="day_range" min="1" max="500" step="1" placeholder="number of days" value="120">
-                                            @if($errors->has('day_range'))<span class="help-block text-danger">{{ $errors->first('day_range') }}</span>@endif
+                                    <div class="form-group row {{ $errors->has('order_no') ? 'has-error' : '' }}">
+                                        <label for="order_no" class="col-md-3 offset-1 control-label">Order No<span class="text-danger">*</span></label>
+                                        <div class="col-md-8 pl-0 pr-0">
+                                            <input type="text" name="order_no" id="order_no" placeholder="order no" value="" required>
+                                            @if($errors->has('order_no'))<span class="help-block text-danger">{{ $errors->first('order_no') }}</span>@endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row {{ $errors->has('description') ? 'has-error' : '' }}">
+                                        <label for="description" class="col-md-3 offset-1 control-label">Description<span class="text-danger">*</span></label>
+                                        <div class="col-md-8 pl-0 pr-0">
+                                            <input type="text" name="description" id="description" placeholder="description" value="" required>
+                                            @if($errors->has('description'))<span class="help-block text-danger">{{ $errors->first('description') }}</span>@endif
                                         </div>
                                     </div>
 
                                     <div class="form-group row {{ $errors->has('buyer') ? 'has-error' : '' }}">
-                                        <label for="buyer" class="col-md-2 offset-1 control-label">Buyer Select<span class="text-danger">*</span></label>
-                                        <div class="col-md-8">
+                                        <label for="buyer" class="col-md-3 offset-1 control-label">Buyer Select<span class="text-danger">*</span></label>
+                                        <div class="col-md-3 pl-0 pr-0">
                                             <select name="buyer">
                                                 <option value="1">Zaman</option>
                                                 <option value="2">Farukh</option>
@@ -71,10 +71,25 @@
                                             </select>
                                             @if($errors->has('buyer'))<span class="help-block text-danger">{{ $errors->first('buyer') }}</span>@endif
                                         </div>
+                                        <div class="col-md-1 pl-0">
+                                            Or
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="{{url("merchandise/add-buyer")}}" class="btn btn-outline-info add_size_quantity"><i class="fa fa-plus" aria-hidden="true"> </i> Add Buyer</a>
+                                        </div>
                                     </div>
+
+                                    <div class="form-group row {{ $errors->has('day_range') ? 'has-error' : '' }}">
+                                        <label for="day_range" class="col-md-3 offset-1 control-label">Day Range</label>
+                                        <div class="col-md-8 pl-0 pr-0">
+                                            <input type="number" name="day_range" id="day_range" min="1" max="500" step="1" placeholder="number of days" value="120">
+                                            @if($errors->has('day_range'))<span class="help-block text-danger">{{ $errors->first('day_range') }}</span>@endif
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row {{ $errors->has('time_segment') ? 'has-error' : '' }}">
-                                        <label for="time_segment" class="col-md-2 offset-1 control-label">Time Segment<span class="text-danger">*</span></label>
-                                        <div class="col-md-8">
+                                        <label for="time_segment" class="col-md-3 offset-1 control-label">Time Segment</label>
+                                        <div class="col-md-8 pl-0 pr-0">
                                             <input type="number" name="first" id="first" min="1" max="100" step="1" placeholder="" value="15">
                                             <input type="number" name="second" id="second" min="1" max="100" step="1" placeholder="" value="20">
                                             <input type="number" name="third" id="third" min="1" max="100" step="1" placeholder="" value="15">
@@ -85,14 +100,22 @@
                                     </div>
 
                                     <div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">
-                                        <label for="order_quantity" class="col-md-2 offset-1 control-label">Size Quantity<span class="text-danger">*</span></label>
-                                        <div class="col-md-8">
+                                        <label for="order_quantity" class="col-md-3 offset-1 control-label">Size Quantity</label>
+                                        <div class="col-md-8 pl-0 pr-0">
                                             <input type="text" name="size[]" placeholder="size" value="">
                                             <span class="mr-2"></span>
                                             <input type="number" name="quantity[]" step="1" placeholder="quantity" value="">
                                         </div>
                                     </div>
-                                    <div class="row mb-3 element_add_area">
+
+                                    <div class="form-group row element_add_area">
+                                        <label for="total_quantity" class="col-md-3 offset-1 control-label">Total Quantity</label>
+                                        <div class="col-md-8 pl-0 pr-0">
+                                            <input type="text" name="total_quantity" id="total_quantity" value="0" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
                                         <div class="col-md-2 offset-4">
                                             <a href="javascript:;" class="btn btn-outline-info add_size_quantity"><i class="fa fa-plus" aria-hidden="true"> </i> Add Size</a>
                                         </div>
@@ -113,8 +136,8 @@
     </section>
     <div id="size-quantity" class="d-none">
         <div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">
-            <label for="order_quantity" class="col-md-2 offset-1 control-label">Size Quantity<span class="text-danger">*</span></label>
-            <div class="col-md-8">
+            <label for="order_quantity" class="col-md-3 offset-1 control-label">Size Quantity<span class="text-danger">*</span></label>
+            <div class="col-md-8 pl-0 pr-0">
                 <input type="text" name="size[]" placeholder="size" value="">
                 <span class="mr-2"></span>
                 <input type="number" name="quantity[]" step="1" placeholder="quantity" value="">
