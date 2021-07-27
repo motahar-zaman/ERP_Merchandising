@@ -104,7 +104,7 @@
                                         <div class="col-md-8 pl-0 pr-0">
                                             <input type="text" name="size[]" placeholder="size" value="">
                                             <span class="mr-2"></span>
-                                            <input type="number" name="quantity[]" step="1" placeholder="quantity" value="">
+                                            <input onchange="totalQuantity()" class="quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="0">
                                         </div>
                                     </div>
 
@@ -134,16 +134,6 @@
             </div>
         </div>
     </section>
-    <div id="size-quantity" class="d-none">
-        <div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">
-            <label for="order_quantity" class="col-md-3 offset-1 control-label">Size Quantity<span class="text-danger">*</span></label>
-            <div class="col-md-8 pl-0 pr-0">
-                <input type="text" name="size[]" placeholder="size" value="">
-                <span class="mr-2"></span>
-                <input type="number" name="quantity[]" step="1" placeholder="quantity" value="">
-            </div>
-        </div>
-    </div>
     <!-- /.content -->
 
 @stop
@@ -164,9 +154,30 @@
     <script>
         $(document).ready(function(){
             $('.add_size_quantity').on('click', function(){
-                var content = $('#size-quantity').html();
+                var content = '<div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">'+
+                    '<label for="order_quantity" class="col-md-3 offset-1 control-label">Size Quantity<span class="text-danger">*</span></label>'+
+                    '<div class="col-md-8 pl-0 pr-0">'+
+                    '<input type="text" name="size[]" placeholder="size" value="">'+
+                    '<span class="mr-2"></span>'+
+                    '<input onchange="totalQuantity()" class="quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="0">'+
+                    '</div>'+
+                    '</div>';
                 $('.element_add_area').before(content);
             })
         });
+
+        function totalQuantity(){
+            let sum = 0;
+            /*let values = $("input[name='quantity[]']").map(function(){return parseFloat($(this).val());}).get();
+            for (let i = 0; i < values.length; i++) {
+                sum += values[i];
+            }*/
+
+            $('.quantity').each(function (index, element) {
+                sum += parseFloat($(element).val());
+            });
+
+            $("#total_quantity").val(sum);
+        }
     </script>
 @stop
