@@ -34,15 +34,8 @@
                             <!-- form start -->
                             <form method="post">
                                 @csrf
+                                <input type="hidden" name="order_id" id="order_id" value="{{$orderId}}">
                                 <div class="card-body">
-                                    @if($errors->any())
-                                        <ul>
-                                            @foreach($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-
                                     <div id="elements">
                                         <div class="pt-4">
                                             <h4>Enter Elements Details</h4>
