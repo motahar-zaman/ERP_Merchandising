@@ -62,7 +62,8 @@
                                     <div class="form-group row {{ $errors->has('buyer') ? 'has-error' : '' }}">
                                         <label for="buyer" class="col-md-3 offset-1 control-label">Buyer Select<span class="text-danger">*</span></label>
                                         <div class="col-md-3 pl-0 pr-0">
-                                            <select name="buyer">
+                                            <select name="buyer" placeholder="Select a buyer">
+                                                <option value=""></option>
                                                 <option value="1">Zaman</option>
                                                 <option value="2">Farukh</option>
                                                 <option value="3">Zubayer</option>
@@ -71,8 +72,8 @@
                                             </select>
                                             @if($errors->has('buyer'))<span class="help-block text-danger">{{ $errors->first('buyer') }}</span>@endif
                                         </div>
-                                        <div class="col-md-1 pl-0">
-                                            Or
+                                        <div class="col-md-2 text-center">
+                                            <label>Or</label>
                                         </div>
                                         <div class="col-md-3">
                                             <a href="{{url("merchandise/add-buyer")}}" class="btn btn-outline-info add_size_quantity"><i class="fa fa-plus" aria-hidden="true"> </i> Add Buyer</a>
@@ -141,12 +142,15 @@
 @section('style')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 @stop
 
 @section('plugin')
     <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 @stop
 
 @section('script')
@@ -164,6 +168,10 @@
                     '</div>';
                 $('.element_add_area').before(content);
             })
+
+            $('select').selectize({
+                sortField: 'text'
+            });
         });
 
         function totalQuantity(){
