@@ -32,7 +32,7 @@
                                 <h3 class="card-title">Create Order Elements</h3>
                             </div>
                             <!-- form start -->
-                            <form method="post">
+                            <form method="post" action="{{route("order-element")}}">
                                 @csrf
                                 <input type="hidden" name="order_id" id="order_id" value="{{$orderId}}">
                                 <div class="card-body">
