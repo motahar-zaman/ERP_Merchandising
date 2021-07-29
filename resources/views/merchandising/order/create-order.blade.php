@@ -164,7 +164,7 @@
                     '</div>' +
                     '</div>';
                 $('.element_add_area').before(content);
-            })
+            });
 
             $('select').selectize({
                 sortField: 'text'
