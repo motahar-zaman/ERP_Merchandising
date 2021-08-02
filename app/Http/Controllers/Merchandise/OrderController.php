@@ -78,6 +78,11 @@ class OrderController extends Controller
 
             $element->save();
         }
-        return redirect()->route("order-ui");
+        return redirect()->route("order-details", ['orderId' => $data["order_id"]]);
+    }
+
+    public function orderDetails($orderId){
+        $order = Order::find($orderId);
+        return view('merchandising/order/order-details')-> with(['order'=> $order]);
     }
 }
