@@ -460,6 +460,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('create-order', 'Merchandise\OrderController@createOrder')->name('order-create');
     Route::get('order-elements/{id}', 'Merchandise\OrderController@elements')->name('order-element-ui');
     Route::post('order-elements', 'Merchandise\OrderController@addElements')->name('order-element');
+    Route::get('order-details/{id}', 'Merchandise\OrderController@orderDetails')->name('order-details');
 });
 
 //ajax routes starts here
