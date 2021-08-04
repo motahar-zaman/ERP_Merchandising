@@ -13,7 +13,13 @@
         <li class="nav-item">
             <a href="{{ url('create-order') }}" class="nav-link {{ isActive('create-order') }}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Order</p>
+                <p>New Order</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url('order-list') }}" class="nav-link {{ isActive('order-list') }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Order List</p>
             </a>
         </li>
         <li class="nav-item">
