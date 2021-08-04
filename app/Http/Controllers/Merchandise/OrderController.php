@@ -85,4 +85,9 @@ class OrderController extends Controller
         $order = Order::find($orderId);
         return view('merchandising/order/order-details')-> with(['order'=> $order]);
     }
+
+    public function orderList(){
+        $order = Order::where("status", 1)->get();
+        return view('merchandising/order/order-list')-> with(['orders'=> $order]);
+    }
 }
