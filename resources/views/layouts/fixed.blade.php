@@ -79,6 +79,10 @@
                 text-align: left;
                 font-weight: 400;
             }
+            .required:after {
+                content:" *";
+                color: red;
+            }
         </style>
         @yield('style')
         @yield('css')
