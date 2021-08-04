@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Create order')
+@section('title','Order Details')
 
 @section('content')
 
