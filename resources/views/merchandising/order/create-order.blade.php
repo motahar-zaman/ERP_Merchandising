@@ -38,7 +38,7 @@
                                     <div class="form-group row {{ $errors->has('style_name') ? 'has-error' : '' }}">
                                         <label for="style_name" class="col-md-3 offset-1 control-label">Style Name<span class="text-danger">*</span></label>
                                         <div class="col-md-8 pl-0 pr-0">
-                                            <input type="text" name="style_name" id="style_name" placeholder="style name" value="" required>
+                                            <input type="text" class="form-control" name="style_name" id="style_name" placeholder="style name" value="" required>
                                             @if($errors->has('style_name'))<span class="help-block text-danger">{{ $errors->first('style_name') }}</span>@endif
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                                     <div class="form-group row {{ $errors->has('order_no') ? 'has-error' : '' }}">
                                         <label for="order_no" class="col-md-3 offset-1 control-label">Order No<span class="text-danger">*</span></label>
                                         <div class="col-md-8 pl-0 pr-0">
-                                            <input type="text" name="order_no" id="order_no" placeholder="order no" value="" required>
+                                            <input type="text" class="form-control" name="order_no" id="order_no" placeholder="order no" value="" required>
                                             @if($errors->has('order_no'))<span class="help-block text-danger">{{ $errors->first('order_no') }}</span>@endif
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                     <div class="form-group row {{ $errors->has('description') ? 'has-error' : '' }}">
                                         <label for="description" class="col-md-3 offset-1 control-label">Description<span class="text-danger">*</span></label>
                                         <div class="col-md-8 pl-0 pr-0">
-                                            <input type="text" name="description" id="description" placeholder="description" value="" required>
+                                            <input type="text" class="form-control" name="description" id="description" placeholder="description" value="" required>
                                             @if($errors->has('description'))<span class="help-block text-danger">{{ $errors->first('description') }}</span>@endif
                                         </div>
                                     </div>
@@ -83,32 +83,42 @@
                                     <div class="form-group row {{ $errors->has('delivery_date') ? 'has-error' : '' }}">
                                         <label for="delivery_date" class="col-md-3 offset-1 control-label">Delivery Date<span class="text-danger">*</span></label>
                                         <div class="col-md-4 pl-0 pr-0">
-                                            <input onchange="calculateDayRange()" type="date" name="delivery_date" id="delivery_date" placeholder="dd-mm-yyyy" value="" required>
+                                            <input onchange="calculateDayRange()" type="date" class="form-control" name="delivery_date" id="delivery_date" placeholder="dd-mm-yyyy" value="" required>
                                             @if($errors->has('delivery_date'))<span class="help-block text-danger">{{ $errors->first('delivery_date') }}</span>@endif
                                         </div>
-                                        <div class="col-md-4 pl-0 pr-0">
+                                        <div class="col-md-4 pl-4">
                                             <label>Left <span id="day_range">0</span> days </label>
                                         </div>
                                     </div>
 
                                     <div class="form-group row {{ $errors->has('time_segment') ? 'has-error' : '' }}">
                                         <label for="time_segment" class="col-md-3 offset-1 control-label">Time Segment</label>
-                                        <div class="col-md-8 pl-0 pr-0">
-                                            <input type="number" name="first" id="first" min="1" max="100" step="1" placeholder="" value="15">
-                                            <input type="number" name="second" id="second" min="1" max="100" step="1" placeholder="" value="20">
-                                            <input type="number" name="third" id="third" min="1" max="100" step="1" placeholder="" value="15">
-                                            <input type="number" name="forth" id="forth" min="1" max="100" step="1" placeholder="" value="15">
-                                            <input type="number" name="fifth" id="fifth" min="1" max="100" step="1" placeholder="" value="35">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="pr-2">
+                                                    <input type="number" class="form-control" name="first" id="first" min="1" max="100" step="1" placeholder="" value="15">
+                                                </div>
+                                                <div class="pr-2">
+                                                    <input type="number" class="form-control" name="third" id="third" min="1" max="100" step="1" placeholder="" value="15">
+                                                </div>
+                                                <div class="pr-2">
+                                                    <input type="number" class="form-control" name="forth" id="forth" min="1" max="100" step="1" placeholder="" value="15">
+                                                </div>
+                                                <div>
+                                                    <input type="number" class="form-control" name="fifth" id="fifth" min="1" max="100" step="1" placeholder="" value="35">
+                                                </div>
+                                            </div>
                                             @if($errors->has('day_range'))<span class="help-block text-danger">{{ $errors->first('day_range') }}</span>@endif
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="order_quantity" class="col-md-3 offset-1 control-label">Size & Quantity</label>
-                                        <div class="col-md-8 pl-0 pr-0">
-                                            <input type="text" name="size[]" placeholder="size" value="">
-                                            <span class="mr-2"></span>
-                                            <input onchange="totalQuantity()" class="quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="0">
+                                        <div class="col-md-4 pl-0">
+                                            <input type="text" class="form-control" name="size[]" placeholder="size" value="">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input onchange="totalQuantity()" class="form-control quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="">
                                         </div>
                                     </div>
 
@@ -116,8 +126,8 @@
                                         <label>Total Quantity = <span id="total_quantity">0</span> Pcs</label>
                                     </div>
 
-                                    <div class="row mb-3">
-                                        <div class="col-md-2 offset-4">
+                                    <div class="row justify-content-center mb-3">
+                                        <div class="col-md-2">
                                             <a href="javascript:;" class="btn btn-outline-info add_size_quantity"><i class="fa fa-plus" aria-hidden="true"> </i> Add Size</a>
                                         </div>
                                     </div>
@@ -155,12 +165,13 @@
     <script>
         $(document).ready(function(){
             $('.add_size_quantity').on('click', function(){
-                var content = '<div class="form-group row {{ $errors->has('order_quantity') ? 'has-error' : '' }}">' +
+                var content = '<div class="form-group row">' +
                     '<label for="order_quantity" class="col-md-3 offset-1 control-label">Size & Quantity</label>' +
-                    '<div class="col-md-8 pl-0 pr-0">' +
-                    '<input type="text" name="size[]" placeholder="size" value="">' +
-                    '<span class="mr-2"></span>' +
-                    '<input onchange="totalQuantity()" class="quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="0">' +
+                    '<div class="col-md-4 pl-0">' +
+                    '<input type="text" class="form-control" name="size[]" placeholder="size" value="">' +
+                    '</div>' +
+                    '<div class="col-md-4">' +
+                    '<input onchange="totalQuantity()" class="form-control quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="">' +
                     '</div>' +
                     '</div>';
                 $('.element_add_area').before(content);
@@ -175,7 +186,8 @@
             let sum = 0;
 
             $('.quantity').each(function (index, element) {
-                sum += parseFloat($(element).val());
+                console.log(typeof parseFloat($(element).val()));
+                sum += $(element).val() === "" ? 0 : parseFloat($(element).val());
             });
 
             $("#total_quantity").html(sum);
