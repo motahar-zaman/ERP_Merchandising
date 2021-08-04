@@ -83,8 +83,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row ml-1">
-                                <table class="col-md-8 offset-1">
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover text-center">
                                     <thead class="text-bold">
                                         <tr>
                                             <td>Size Name</td>
@@ -99,9 +99,9 @@
                                                 $total += $size->quantity;
                                                 ?>
                                                 <tr>
-                                                    <td class="pl-2">{{$size->size_name}}</td>
-                                                    <td class="pl-2">{{$size->quantity}}</td>
-                                                    <td class="pl-2">{{$total }}</td>
+                                                    <td>{{$size->size_name}}</td>
+                                                    <td>{{$size->quantity}}</td>
+                                                    <td>{{$total }}</td>
                                                 </tr>
                                             <?php
                                               }
@@ -114,8 +114,8 @@
                         <div class="card-header">
                             <h3 class="card-title">Order Elements</h3>
                         </div>
-                        <div class="card-body">
-                            <table class="col-md-12">
+                        <div class="card-body table-responsive">
+                            <table class="table table-hover text-center">
                                 <thead class="text-bold">
                                     <tr>
                                         <td>Element Name</td>
@@ -135,21 +135,20 @@
                                             $quantity = $element->sizeQuantity["quantity"];
                                         ?>
                                         <tr>
-                                            <td class="pl-2">{{$element->element_name}}</td>
-                                            <td class="pl-2">{{$element->sizeQuantity["size_name"]}}</td>
-                                            <td class="pl-2">{{$quantity}}</td>
-                                            <td class="pl-2">{{$element->quantity_per_unit}}</td>
-                                            <td class="pl-2">{{$element->waste_percentage}} %</td>
-                                            <td class="pl-2">{{$element->waste_percentage * $element->quantity_per_unit * $quantity}}</td>
-                                            <td class="pl-2">{{$element->color}}</td>
-                                            <td class="pl-2">{{$element->type}}</td>
-                                            <td class="pl-2">{{$element->note}}</td>
+                                            <td>{{$element->element_name}}</td>
+                                            <td>{{$quantity}}</td>
+                                            <td>{{$element->quantity_per_unit}}</td>
+                                            <td>{{$element->waste_percentage}} %</td>
+                                            <td>{{$element->waste_percentage * $element->quantity_per_unit * $quantity}}</td>
+                                            <td>{{$element->color}}</td>
+                                            <td>{{$element->type}}</td>
+                                            <td>{{$element->sizeQuantity["size_name"]}}</td>
+                                            <td>{{$element->note}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>

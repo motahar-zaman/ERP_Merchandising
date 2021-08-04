@@ -29,7 +29,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Order List</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body table-responsive">
                             <table class="table table-hover text-center">
                                 <thead class="text-bold">
                                     <tr>
