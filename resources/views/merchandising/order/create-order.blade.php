@@ -4,7 +4,6 @@
 
 @section('content')
 
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -18,10 +17,10 @@
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
-    <!-- Main content -->
+
     <section class="content">
         <div class="col-12">
             <div class="card"><br>
@@ -31,7 +30,6 @@
                             <div class="card-header">
                                 <h3 class="card-title">Create Order</h3>
                             </div>
-                            <!-- form start -->
                             <form method="post">
                                 @csrf
                                 <div class="card-body">
@@ -76,11 +74,13 @@
                                             <label>Or</label>
                                         </div>
                                         <div class="col-md-3">
-                                            <a href="{{url("merchandise/add-buyer")}}" class="btn btn-outline-info add_size_quantity"><i class="fa fa-plus" aria-hidden="true"> </i> Add Buyer</a>
+                                            <a href="{{url("merchandise/add-buyer")}}" class="btn btn-outline-info">
+                                                <i class="fa fa-plus" aria-hidden="true"> </i> Add Buyer
+                                            </a>
                                         </div>
                                     </div>
 
-                                    <div class="form-group row {{ $errors->has('delivery_date') ? 'has-error' : '' }}">
+                                    <div class="form-group row">
                                         <label for="delivery_date" class="col-md-3 offset-1 control-label">Delivery Date<span class="text-danger">*</span></label>
                                         <div class="col-md-4 pl-0 pr-0">
                                             <input onchange="calculateDayRange()" type="date" class="form-control" name="delivery_date" id="delivery_date" placeholder="dd-mm-yyyy" value="" required>
@@ -91,7 +91,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row {{ $errors->has('time_segment') ? 'has-error' : '' }}">
+                                    <div class="form-group row">
                                         <label for="time_segment" class="col-md-3 offset-1 control-label">Time Segment</label>
                                         <div class="col-md-8">
                                             <div class="row">
@@ -128,7 +128,9 @@
 
                                     <div class="row justify-content-center mb-3">
                                         <div class="col-md-2">
-                                            <a href="javascript:;" class="btn btn-outline-info add_size_quantity"><i class="fa fa-plus" aria-hidden="true"> </i> Add Size</a>
+                                            <a href="javascript:;" class="btn btn-outline-info add_size_quantity">
+                                                <i class="fa fa-plus" aria-hidden="true"> </i> Add Size
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -141,12 +143,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.row -->
             </div>
         </div>
     </section>
-    <!-- /.content -->
-
 @stop
 
 @section('style')
