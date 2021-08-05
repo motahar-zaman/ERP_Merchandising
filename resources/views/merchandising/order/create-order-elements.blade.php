@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <!-- Content Header (Page header) -->
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -19,31 +19,28 @@
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
-    <!-- Main content -->
     <section class="content">
         <div class="col-12">
             <div class="card"><br>
                 <div class="row justify-content-center">
                     <div class="card-info" style="width:95%">
                         <div class="card-header">
-                            <h3 class="card-title">Create Order Elements</h3>
+                            <h3 class="card-title">Enter Elements Details</h3>
                         </div>
-                        <!-- form start -->
+
                         <form method="post" action="{{route("order-element")}}">
                             @csrf
-                            <input type="hidden" name="order_id" id="order_id" value="{{$orderId}}">
+                            <input type="hidden" class="form-control" name="order_id" id="order_id" value="{{$orderId}}">
                             <div class="card-body">
-                                <h4 class="pb-3 ml-0">Enter Elements Details</h4>
                                 <div id="elements">
                                     <div class="form-group row">
-                                        <div class="col-md-3 pl-0 pr-0">
-                                            <input type="text" name="element_name[]" id="element_name" placeholder="element name" value="" required>
-                                            <span class="text-danger">*</span>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" name="element_name[]" id="element_name" placeholder="element name" value="" required>
                                         </div>
-                                        <div class="col-md-3 pl-0 pr-5">
+                                        <div class="col-md-3 pl-2">
                                             <select name="size[]" id="size" placeholder="select size" class="mr-1">
                                                 <option value=""></option>
                                                 @foreach($sizeQuantity as $size)
@@ -53,30 +50,21 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                            <input type="number" name="quantity[]" id="quantity" placeholder="quantity" min="0" max="100" step="0.01" value="">
+                                            <input type="number" class="form-control" name="quantity[]" id="quantity" placeholder="quantity/unit" min="0" max="100" step="0.01" value="">
                                         </div>
 
                                         <div class="col-md-2">
-                                            <input onchange="calculateTotalQuantity()" type="number" name="wastage[]" id="wastage" placeholder="wastage" min="1" max="100" step="0.01" value="">
+                                            <input onchange="calculateTotalQuantity()" type="number" class="form-control" name="wastage[]" id="wastage" placeholder="wastage %" min="1" max="100" step="0.01" value="">
                                         </div>
-
-<!--
-                                        <div class="col-md-2 pl-0 pr-0">
-                                            <label>Total Quantity <span id="total_quantity">0</span></label>
-                                        </div>-->
                                     </div>
 
                                     <div class="form-group row pb-4">
-                                        <div class="col-md-3 pl-0">
-                                            <input type="text" name="color[]" id="color" placeholder="color" value="">
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" name="color[]" id="color" placeholder="color" value="">
                                         </div>
 
                                         <div class="col-md-3">
-                                            <input type="text" name="type[]" id="type" placeholder="type" value="">
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <input type="text" name="note[]" id="note" placeholder="note" value="">
+                                            <input type="text" class="form-control" name="type[]" id="type" placeholder="type" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -93,12 +81,9 @@
                         </form>
                     </div>
                 </div>
-                <!-- /.row -->
             </div>
         </div>
     </section>
-    <!-- /.content -->
-
 @stop
 
 @section('style')
@@ -118,11 +103,10 @@
         $(document).ready(function(){
             $('.add_element').on('click', function(){
                 var content = '<div class="form-group row">' +
-                    '<div class="col-md-3 pl-0 pr-0">' +
-                    '<input type="text" name="element_name[]" id="element_name" placeholder="element name" value="" required>' +
-                    '<span class="text-danger">*</span>' +
+                    '<div class="col-md-3">' +
+                    '<input type="text" class="form-control" name="element_name[]" id="element_name" placeholder="element name" value="" required>' +
                     '</div>' +
-                    '<div class="col-md-3 pl-0 pr-5">' +
+                    '<div class="col-md-3 pl-2">' +
                     '<select name="size[]" id="size" placeholder="select size" class="mr-1">' +
                     '<option value=""></option>' +
                     '@foreach($sizeQuantity as $size)' +
@@ -132,25 +116,22 @@
                     '</div>' +
 
                     '<div class="col-md-2">' +
-                    '<input type="number" name="quantity[]" id="quantity" placeholder="quantity" min="0" max="100" step="0.01" value="">' +
+                    '<input type="number" class="form-control" name="quantity[]" id="quantity" placeholder="quantity/unit" min="0" max="100" step="0.01" value="">' +
                     '</div>' +
 
                     '<div class="col-md-2">' +
-                    '<input onchange="calculateTotalQuantity()" type="number" name="wastage[]" id="wastage" placeholder="wastage" min="1" max="100" step="0.01" value="">' +
+                    '<input onchange="calculateTotalQuantity()" type="number" class="form-control" name="wastage[]" id="wastage" placeholder="wastage %" min="1" max="100" step="0.01" value="">' +
                     '</div>' +
                     '</div>' +
 
                     '<div class="form-group row pb-4">' +
-                    '<div class="col-md-3 pl-0">' +
-                    '<input type="text" name="color[]" id="color" placeholder="color" value="">' +
+                    '<div class="col-md-3">' +
+                    '<input type="text" class="form-control" name="color[]" id="color" placeholder="color" value="">' +
                     '</div>' +
 
                     '<div class="col-md-3">' +
-                    '<input type="text" name="type[]" id="type" placeholder="type" value="">' +
+                    '<input type="text" class="form-control" name="type[]" id="type" placeholder="type" value="">' +
                     '</div>' +
-
-                    '<div class="col-md-3">' +
-                    '<input type="text" name="note[]" id="note" placeholder="note" value="">' +
                     '</div>' +
                     '</div>';
                 $('.element_add_area').before(content);
