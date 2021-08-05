@@ -185,7 +185,6 @@
             let sum = 0;
 
             $('.quantity').each(function (index, element) {
-                console.log(typeof parseFloat($(element).val()));
                 sum += $(element).val() === "" ? 0 : parseFloat($(element).val());
             });
 
