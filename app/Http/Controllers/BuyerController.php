@@ -15,7 +15,7 @@ class BuyerController extends Controller
         $this->repository = $repository;
         $this->middleware('auth');
     }
-    //Manage Buyer
+
     public function index()
     {
         $buyers=Buyer::all();
@@ -28,7 +28,6 @@ class BuyerController extends Controller
     }
 
     public function store(Request $request){
-//        dd($request->all());
         $this->validate($request,[
             'buyer_code' => 'required',
             'name' => 'required|min:4',
@@ -58,6 +57,4 @@ class BuyerController extends Controller
         $buyer->delete();
         return redirect('merchandise/manage-buyer');
     }
-
-
 }
