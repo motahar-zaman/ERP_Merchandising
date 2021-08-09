@@ -20,7 +20,6 @@
         </div>
     </section>
 
-
     <section class="content">
         <div class="col-12">
             <div class="card"><br>
@@ -59,21 +58,19 @@
 
                                     <div class="form-group row {{ $errors->has('buyer') ? 'has-error' : '' }}">
                                         <label for="buyer" class="col-md-3 offset-1 control-label">Buyer Select<span class="text-danger">*</span></label>
-                                        <div class="col-md-3 pl-0 pr-0">
+                                        <div class="col-md-5 pl-0 pr-0">
                                             <select name="buyer" placeholder="Select a buyer">
                                                 <option value=""></option>
-                                                <option value="1">Zaman</option>
-                                                <option value="2">Farukh</option>
-                                                <option value="3">Zubayer</option>
-                                                <option value="4">Kunisan</option>
-                                                <option value="5">Katakana</option>
+                                                @foreach($buyers as $buyer)
+                                                    <option value="{{$buyer->id}}">{{$buyer->name}}</option>
+                                                @endforeach
                                             </select>
                                             @if($errors->has('buyer'))<span class="help-block text-danger">{{ $errors->first('buyer') }}</span>@endif
                                         </div>
-                                        <div class="col-md-2 text-center">
+                                        <div class="col-md-1 text-center">
                                             <label>Or</label>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2 pl-0">
                                             <a href="{{url("merchandise/add-buyer")}}" class="btn btn-outline-info">
                                                 <i class="fa fa-plus" aria-hidden="true"> </i> Add Buyer
                                             </a>
