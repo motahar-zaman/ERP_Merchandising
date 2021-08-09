@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Merchandise;
 
 
+use App\Buyer;
 use App\Http\Controllers\Controller;
 use App\Models\Order\Order;
 use App\Models\Order\OrderElement;
@@ -13,7 +14,8 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function index(){
-        return view('merchandising/order/create-order');
+        $buyers = Buyer::get();
+        return view('merchandising/order/create-order', ["buyers" => $buyers]);
     }
 
     public function createOrder(Request $request){
@@ -65,14 +67,13 @@ class OrderController extends Controller
         for($i = 0; $i < count($data["element_name"]); $i++){
             $element = new OrderElement();
 
-            $element->order_id = $data["order_id"];
-            $element->size_quantity_id = $data["size"][$i];
-            $element->element_name = $data["element_name"][$i];
-            $element->quantity_per_unit = $data["quantity"][$i];
-            $element->waste_percentage = $data["wastage"][$i];
-            $element->color = $data["color"][$i];
-            $element->type = $data["type"][$i];
-            $element->note = $data["note"][$i];
+            $element->order_id = $data["order_id"] ?? null;
+            $element->size_quantity_id = $data["size"][$i] ?? null;
+            $element->element_name = $data["element_name"][$i] ?? null;
+            $element->quantity_per_unit = $data["quantity"][$i] ?? null;
+            $element->waste_percentage = $data["wastage"][$i] ?? null;
+            $element->color = $data["color"][$i] ?? null;
+            $element->type = $data["type"][$i] ?? null;
             $element->created_at = date("Y-m-d H:i:s");
             $element->updated_at = date("Y-m-d H:i:s");
 
