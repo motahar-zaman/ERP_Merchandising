@@ -27,11 +27,11 @@ class OrderController extends Controller
 
         $order = new Order();
 
-        $order->order_no = $data["order_no"];
-        $order->order_name = $data["description"];
-        $order->style_name = $data["style_name"];
-        $order->buyer_id = $data["buyer"];
-        $order->delivery_date = $data["delivery_date"];
+        $order->order_no = $data["order_no"] ?? null;
+        $order->order_name = $data["description"] ?? null;
+        $order->style_name = $data["style_name"] ?? null;
+        $order->buyer_id = $data["buyer"] ?? null;
+        $order->delivery_date = $data["delivery_date"] ?? null;
         $order->quantity = $orderQuantity;
         $order->status = 1;
         $order->created_at = date("Y-m-d H:i:s");
