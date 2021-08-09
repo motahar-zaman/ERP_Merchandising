@@ -52,9 +52,9 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="buyer" class="col-md-3 offset-1 control-label">Selected Buyer</label>
+                                <label for="buyer" class="col-md-3 offset-1 control-label">Buyer Name</label>
                                 <div class="col-md-3 pl-0 pr-0">
-                                    <span>{{$order->buyer_id}}</span>
+                                    <span>{{$order->buyer->name}}</span>
                                 </div>
                             </div>
 
@@ -136,13 +136,13 @@
                                         ?>
                                         <tr>
                                             <td>{{$element->element_name}}</td>
+                                            <td>{{$element->sizeQuantity["size_name"]}}</td>
                                             <td>{{$quantity}}</td>
                                             <td>{{$element->quantity_per_unit}}</td>
                                             <td>{{$element->waste_percentage}} %</td>
-                                            <td>{{$element->waste_percentage * $element->quantity_per_unit * $quantity}}</td>
+                                            <td>{{ceil($element->waste_percentage * $element->quantity_per_unit * $quantity)}}</td>
                                             <td>{{$element->color}}</td>
                                             <td>{{$element->type}}</td>
-                                            <td>{{$element->sizeQuantity["size_name"]}}</td>
                                             <td>{{$element->note}}</td>
                                         </tr>
                                     @endforeach

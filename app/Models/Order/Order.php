@@ -23,6 +23,6 @@ class Order extends Model
     }
 
     public function buyer(){
-        return $this->hasOne(Buyer::class, 'buyer_id');
+        return $this->hasOne(Buyer::class, 'id', 'buyer_id');
     }
 }
