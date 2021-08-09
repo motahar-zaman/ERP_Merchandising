@@ -4,6 +4,7 @@
 namespace App\Models\Order;
 
 
+use App\Buyer;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -19,5 +20,9 @@ class Order extends Model
     public function sizeQuantity()
     {
         return $this->hasMany(OrderSizeQuantity::class,'order_id');
+    }
+
+    public function buyer(){
+        return $this->hasOne(Buyer::class, 'buyer_id');
     }
 }
