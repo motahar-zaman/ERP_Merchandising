@@ -462,6 +462,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('order-elements', 'Merchandise\OrderController@addElements')->name('order-element');
     Route::get('order-list', 'Merchandise\OrderController@orderList')->name('order-list');
     Route::get('order-details/{id}', 'Merchandise\OrderController@orderDetails')->name('order-details');
+    Route::get('elements-order/{id}', 'Merchandise\OrderController@elementsOrder')->name('element-order-ui');
+    Route::post('elements-status-update/{id}/{status}', 'Merchandise\OrderController@elementsStatusUpdate')->name('elements-status-update');
 });
 
 //ajax routes starts here
