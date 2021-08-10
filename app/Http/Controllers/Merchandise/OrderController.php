@@ -10,6 +10,7 @@ use App\Models\Order\Order;
 use App\Models\Order\OrderElement;
 use App\Models\Order\OrderSizeQuantity;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Element;
 
 class OrderController extends Controller
 {
@@ -74,6 +75,7 @@ class OrderController extends Controller
             $element->waste_percentage = $data["wastage"][$i] ?? null;
             $element->color = $data["color"][$i] ?? null;
             $element->type = $data["type"][$i] ?? null;
+            $element->status = 0;
             $element->created_at = date("Y-m-d H:i:s");
             $element->updated_at = date("Y-m-d H:i:s");
 
@@ -90,5 +92,30 @@ class OrderController extends Controller
     public function orderList(){
         $order = Order::where("status", 1)->get();
         return view('merchandising/order/order-list')-> with(['orders'=> $order]);
+    }
+
+    public function elementsOrder($orderId){
+        $order = Order::find($orderId);
+        return view('merchandising/order/elementsOrder')-> with(['order'=> $order]);
+    }
+
+    public function elementsStatusUpdate(Request $request){
+        $elementId = $request["elementId"];
+        $status = $request["status"];
+        $remarks = $request["remarks"];
+
+        $element = OrderElement::find($elementId);
+        $element->status = $status;
+        $element->note = $remarks;
+
+        if($status == 1){
+            $element->order_place = date("Y-m-d H:i:s");
+        }
+        else{
+            $element->order_receive = date("Y-m-d H:i:s");
+        }
+        $element->save();
+
+        return json_encode(['status' => 1, 'message' => 'successfully update status']);
     }
 }
