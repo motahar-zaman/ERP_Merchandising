@@ -124,6 +124,8 @@
                                         <td>Quantity/Unit</td>
                                         <td>Wastage</td>
                                         <td>Need</td>
+                                        <td>Order</td>
+                                        <td>Receive</td>
                                         <td>Color</td>
                                         <td>Type</td>
                                         <td>Note</td>
@@ -141,6 +143,8 @@
                                             <td>{{$element->quantity_per_unit}}</td>
                                             <td>{{$element->waste_percentage}} %</td>
                                             <td>{{ceil($element->waste_percentage * $element->quantity_per_unit * $quantity)}}</td>
+                                            <td>{{ $element->status == 1 ? "Yes" : "No"}}</td>
+                                            <td>{{ $element->status == 2 ? "Yes" : "No"}}</td>
                                             <td>{{$element->color}}</td>
                                             <td>{{$element->type}}</td>
                                             <td>{{$element->note}}</td>
