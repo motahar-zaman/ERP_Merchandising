@@ -102,11 +102,11 @@ class OrderController extends Controller
     public function elementsStatusUpdate(Request $request){
         $elementId = $request["elementId"];
         $status = $request["status"];
-        $remarks = $request["remarks"];
 
         $element = OrderElement::find($elementId);
         $element->status = $status;
-        $element->note = $remarks;
+        $element->timeline_days = $request["timelineDays"];
+        $element->note = $request["remarks"];
 
         if($status == 1){
             $element->order_place = date("Y-m-d H:i:s");
