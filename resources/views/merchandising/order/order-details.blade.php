@@ -143,8 +143,8 @@
                                             <td>{{$element->quantity_per_unit}}</td>
                                             <td>{{$element->waste_percentage}} %</td>
                                             <td>{{ceil($element->waste_percentage * $element->quantity_per_unit * $quantity)}}</td>
-                                            <td>{{ $element->status == 1 ? "Yes" : "No"}}</td>
-                                            <td>{{ $element->status == 2 ? "Yes" : "No"}}</td>
+                                            <td>{{$element->status <= 2 ? date("Y-m-d", strtotime($element->order_place)) : "No"}}</td>
+                                            <td>{{$element->status >= 2 ? date("Y-m-d", strtotime($element->order_receive)) : "No"}}</td>
                                             <td>{{$element->color}}</td>
                                             <td>{{$element->type}}</td>
                                             <td>{{$element->note}}</td>
@@ -152,6 +152,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="text-right pb-3">
+                            <a href="{{url('elements-order/'.$order->id)}}" class="btn btn-outline-info">
+                                Update Order Elements
+                            </a>
                         </div>
                     </div>
                 </div>
