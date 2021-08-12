@@ -56,6 +56,54 @@ class OrderController extends Controller
         return redirect()->route('order-element-ui', ['orderId' => $order->id]);
     }
 
+    public function editOrder($orderId){
+        $buyers = Buyer::get();
+        $order = Order::find($orderId);
+        return view('merchandising/order/edit-order', ["buyers" => $buyers, 'order' => $order]);
+    }
+
+    public function editOrderAction(Request $request){
+        $data = $request->all();
+        $orderQuantity = 0;
+        foreach ($data["quantity"] as $quantity){
+            $orderQuantity += $quantity;
+        }
+
+        $order = Order::find($data["orderId"]);
+
+        $order->order_no = $data["order_no"] ?? null;
+        $order->order_name = $data["description"] ?? null;
+        $order->style_name = $data["style_name"] ?? null;
+        $order->buyer_id = $data["buyer"] ?? null;
+        $order->delivery_date = $data["delivery_date"] ?? null;
+        $order->quantity = $orderQuantity;
+        $order->status = 1;
+        $order->created_at = date("Y-m-d H:i:s");
+        $order->updated_at = date("Y-m-d H:i:s");
+
+        $order->save();
+
+        foreach ($data["size"] as $index => $sizeName){
+            if(isset($data["sizeId"][$index]) && $data["sizeId"][$index] != ""){
+                $size = OrderSizeQuantity::find($data["sizeId"][$index]);
+            }
+            else{
+                $size = new OrderSizeQuantity();
+            }
+
+            $size->order_id = $order->id;
+            $size->size_name = $sizeName;
+            $size->quantity = $data["quantity"][$index] + 0;
+            $size->status = 1;
+            $size->created_at = date("Y-m-d H:i:s");
+            $size->updated_at = date("Y-m-d H:i:s");
+
+            $size->save();
+        }
+
+        return redirect()->route('order-element-ui', ['orderId' => $order->id]);
+    }
+
     public function elements($orderId){
         $sizeQuantity = OrderSizeQuantity::where('order_id', $orderId)->get();
 
