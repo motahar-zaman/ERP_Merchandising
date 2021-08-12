@@ -153,10 +153,17 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="text-right pb-3">
-                            <a href="{{url('elements-order/'.$order->id)}}" class="btn btn-outline-info">
-                                Update Order Elements
-                            </a>
+                        <div class=" row justify-content-end pb-3">
+                            <div class="pr-3">
+                                <a href="{{url('order-elements/'.$order->id)}}" class="btn btn-outline-info">
+                                    Add Order Elements
+                                </a>
+                            </div>
+                            <div class="">
+                                <a href="{{url('elements-order/'.$order->id)}}" class="btn btn-outline-info">
+                                    Update Elements Order
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
