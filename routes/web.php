@@ -458,6 +458,8 @@ Route::group(['middleware'=>'auth'],function(){
     /** route for Order management */
     Route::get('create-order', 'Merchandise\OrderController@index')->name('order-ui');
     Route::post('create-order', 'Merchandise\OrderController@createOrder')->name('order-create');
+    Route::get('edit-order/{id}', 'Merchandise\OrderController@editOrder')->name('order-edit-ui');
+    Route::post('edit-order/{id}', 'Merchandise\OrderController@editOrderAction')->name('order-edit-action');
     Route::get('order-elements/{id}', 'Merchandise\OrderController@elements')->name('order-element-ui');
     Route::post('order-elements', 'Merchandise\OrderController@addElements')->name('order-element');
     Route::get('order-list', 'Merchandise\OrderController@orderList')->name('order-list');
