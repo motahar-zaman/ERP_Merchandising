@@ -143,8 +143,8 @@
                                             <td>{{$element->quantity_per_unit}}</td>
                                             <td>{{$element->waste_percentage}} %</td>
                                             <td>{{ceil($element->waste_percentage * $element->quantity_per_unit * $quantity)}}</td>
-                                            <td>{{$element->status <= 2 ? date("Y-m-d", strtotime($element->order_place)) : "No"}}</td>
-                                            <td>{{$element->status >= 2 ? date("Y-m-d", strtotime($element->order_receive)) : "No"}}</td>
+                                            <td>{{$element->status > 0 ? date("Y-m-d", strtotime($element->order_place)) : "No"}}</td>
+                                            <td>{{$element->status > 1 ? date("Y-m-d", strtotime($element->order_receive)) : "No"}}</td>
                                             <td>{{$element->color}}</td>
                                             <td>{{$element->type}}</td>
                                             <td>{{$element->note}}</td>
@@ -155,8 +155,13 @@
                         </div>
                         <div class=" row justify-content-end pb-3">
                             <div class="pr-3">
-                                <a href="{{url('order-elements/'.$order->id)}}" class="btn btn-outline-info">
-                                    Add Order Elements
+                                <a href="{{url('edit-order/'.$order->id)}}" class="btn btn-outline-info">
+                                    Edit Order
+                                </a>
+                            </div>
+                            <div class="pr-3">
+                                <a href="{{url('edit-order-elements/'.$order->id)}}" class="btn btn-outline-info">
+                                    Edit Order Elements
                                 </a>
                             </div>
                             <div class="">
