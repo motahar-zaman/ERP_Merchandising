@@ -462,6 +462,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('edit-order/{id}', 'Merchandise\OrderController@editOrderAction')->name('order-edit-action');
     Route::get('order-elements/{id}', 'Merchandise\OrderController@elements')->name('order-element-ui');
     Route::post('order-elements', 'Merchandise\OrderController@addElements')->name('order-element');
+    Route::get('edit-order-elements/{id}', 'Merchandise\OrderController@editElements')->name('edit-order-elements-ui');
+    Route::post('edit-order-elements', 'Merchandise\OrderController@editElementsAction')->name('edit-order-elements-action');
     Route::get('order-list', 'Merchandise\OrderController@orderList')->name('order-list');
     Route::get('order-details/{id}', 'Merchandise\OrderController@orderDetails')->name('order-details');
     Route::get('elements-order/{id}', 'Merchandise\OrderController@elementsOrder')->name('element-order-ui');
