@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order\Order;
 use App\Models\Order\OrderElement;
 use App\Models\Order\OrderSizeQuantity;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Element;
 
@@ -101,7 +102,7 @@ class OrderController extends Controller
             $size->save();
         }
 
-        return redirect()->route('order-element-ui', ['orderId' => $order->id]);
+        return redirect()->route('edit-order-element-ui', ['orderId' => $order->id]);
     }
 
     public function elements($orderId){
@@ -115,6 +116,40 @@ class OrderController extends Controller
 
         for($i = 0; $i < count($data["element_name"]); $i++){
             $element = new OrderElement();
+
+            $element->order_id = $data["order_id"] ?? null;
+            $element->size_quantity_id = $data["size"][$i] ?? null;
+            $element->element_name = $data["element_name"][$i] ?? null;
+            $element->quantity_per_unit = $data["quantity"][$i] ?? null;
+            $element->waste_percentage = $data["wastage"][$i] ?? null;
+            $element->color = $data["color"][$i] ?? null;
+            $element->type = $data["type"][$i] ?? null;
+            $element->status = 0;
+            $element->created_at = date("Y-m-d H:i:s");
+            $element->updated_at = date("Y-m-d H:i:s");
+
+            $element->save();
+        }
+        return redirect()->route("order-details", ['orderId' => $data["order_id"]]);
+    }
+
+    public function editElements($orderId){
+        $sizeQuantity = OrderSizeQuantity::where('order_id', $orderId)->get();
+        $orderElements = OrderElement::where('order_id', $orderId)->get();
+
+        return view('merchandising/order/edit-order-elements')-> with(['orderId'=> $orderId, 'sizeQuantity' => $sizeQuantity, 'orderElements' => $orderElements]);
+    }
+
+    public function editElementsAction(Request $request){
+        $data = $request->all();
+
+        for($i = 0; $i < count($data["element_name"]); $i++){
+            if(isset($data["element_id"][$i]) && $data["element_id"][$i] != ""){
+                $element = OrderElement::find($data["element_id"][$i]);
+            }
+            else{
+                $element = new OrderElement();
+            }
 
             $element->order_id = $data["order_id"] ?? null;
             $element->size_quantity_id = $data["size"][$i] ?? null;
