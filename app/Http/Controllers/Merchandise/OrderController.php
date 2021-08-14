@@ -102,7 +102,7 @@ class OrderController extends Controller
             $size->save();
         }
 
-        return redirect()->route('edit-order-element-ui', ['orderId' => $order->id]);
+        return redirect()->route('edit-order-elements-ui', ['orderId' => $order->id]);
     }
 
     public function elements($orderId){

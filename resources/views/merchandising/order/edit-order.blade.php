@@ -84,8 +84,13 @@
                                             <input onchange="calculateDayRange()" type="date" class="form-control" name="delivery_date" id="delivery_date" placeholder="dd-mm-yyyy" value="{{$order->delivery_date}}" required>
                                             @if($errors->has('delivery_date'))<span class="help-block text-danger">{{ $errors->first('delivery_date') }}</span>@endif
                                         </div>
+                                        <?php
+                                            $from = strtotime(date('Y-m-d'));
+                                            $to = strtotime($order->delivery_date);
+                                            $diff = ceil(($to - $from) / (3600 * 24));
+                                        ?>
                                         <div class="col-md-4 pl-4">
-                                            <label>Left <span id="day_range">0</span> days </label>
+                                            <label>Left <span id="day_range">{{$diff}}</span> days </label>
                                         </div>
                                     </div>
 
