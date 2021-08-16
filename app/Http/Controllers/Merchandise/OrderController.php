@@ -42,16 +42,18 @@ class OrderController extends Controller
         $order->save();
 
         foreach ($data["size"] as $index => $sizeName){
-            $size = new OrderSizeQuantity();
+            if(isset($sizeName) & $sizeName != ""){
+                $size = new OrderSizeQuantity();
 
-            $size->order_id = $order->id;
-            $size->size_name = $sizeName;
-            $size->quantity = $data["quantity"][$index] + 0;
-            $size->status = 1;
-            $size->created_at = date("Y-m-d H:i:s");
-            $size->updated_at = date("Y-m-d H:i:s");
+                $size->order_id = $order->id;
+                $size->size_name = $sizeName;
+                $size->quantity = $data["quantity"][$index] + 0;
+                $size->status = 1;
+                $size->created_at = date("Y-m-d H:i:s");
+                $size->updated_at = date("Y-m-d H:i:s");
 
-            $size->save();
+                $size->save();
+            }
         }
 
         return redirect()->route('order-element-ui', ['orderId' => $order->id]);
@@ -85,21 +87,23 @@ class OrderController extends Controller
         $order->save();
 
         foreach ($data["size"] as $index => $sizeName){
-            if(isset($data["sizeId"][$index]) && $data["sizeId"][$index] != ""){
-                $size = OrderSizeQuantity::find($data["sizeId"][$index]);
-            }
-            else{
-                $size = new OrderSizeQuantity();
-            }
+            if(isset($sizeName) & $sizeName != "") {
+                if(isset($data["sizeId"][$index]) && $data["sizeId"][$index] != ""){
+                    $size = OrderSizeQuantity::find($data["sizeId"][$index]);
+                }
+                else{
+                    $size = new OrderSizeQuantity();
+                }
 
-            $size->order_id = $order->id;
-            $size->size_name = $sizeName;
-            $size->quantity = $data["quantity"][$index] + 0;
-            $size->status = 1;
-            $size->created_at = date("Y-m-d H:i:s");
-            $size->updated_at = date("Y-m-d H:i:s");
+                $size->order_id = $order->id;
+                $size->size_name = $sizeName;
+                $size->quantity = $data["quantity"][$index] + 0;
+                $size->status = 1;
+                $size->created_at = date("Y-m-d H:i:s");
+                $size->updated_at = date("Y-m-d H:i:s");
 
-            $size->save();
+                $size->save();
+            }
         }
 
         return redirect()->route('edit-order-elements-ui', ['orderId' => $order->id]);
