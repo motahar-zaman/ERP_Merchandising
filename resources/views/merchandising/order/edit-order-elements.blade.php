@@ -35,42 +35,51 @@
                             @csrf
                             <input type="hidden" class="form-control" name="order_id" id="order_id" value="{{$orderId}}">
                             <div class="card-body">
-                                @foreach($orderElements as $elements)
-                                    <div id="elements">
-                                        <div class="form-group row">
-                                            <div class="col-md-3">
-                                                <input type="hidden" name="element_id[]" id="element_id" value="{{$elements->id}}">
-                                                <input type="text" class="form-control" name="element_name[]" id="element_name" value="{{$elements->element_name}}" required>
-                                            </div>
-                                            <div class="col-md-3 pl-2">
-                                                <select name="size[]" id="size" class="mr-1">
-                                                    <option value=""></option>
-                                                    @foreach($sizeQuantity as $size)
-                                                        <option value="{{$size->id}}" {{$elements->size_quantity_id == $size->id ? "selected" : ''}}>{{$size->size_name}} - {{$size->quantity}}</option>
-                                                    @endforeach
-                                                </select>
+                                <?php
+                                    if(isset($orderElements) && count($orderElements) > 0){
+                                        foreach($orderElements as $elements){
+                                    ?>
+                                        <div id="elements">
+                                            <div class="form-group row">
+                                                <div class="col-md-3">
+                                                    <input type="hidden" name="element_id[]" id="element_id" value="{{$elements->id}}">
+                                                    <input type="text" class="form-control" name="element_name[]" id="element_name" value="{{$elements->element_name ?? ""}}" required>
+                                                </div>
+                                                <div class="col-md-3 pl-2">
+                                                    <select name="size[]" id="size" class="mr-1">
+                                                        <option value=""></option>
+                                                        @foreach($sizeQuantity as $size)
+                                                            <option value="{{$size->id}}" {{$elements->size_quantity_id == $size->id ? "selected" : ''}}>{{$size->size_name}} - {{$size->quantity}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <input type="number" class="form-control" name="quantity[]" id="quantity" min="0" max="100" step="0.01" value="{{$elements->quantity_per_unit ?? ""}}">
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <input onchange="calculateTotalQuantity()" type="number" class="form-control" name="wastage[]" id="wastage" min="1" max="100" step="0.01" value="{{$elements->waste_percentage ?? ""}}">
+                                                </div>
                                             </div>
 
-                                            <div class="col-md-2">
-                                                <input type="number" class="form-control" name="quantity[]" id="quantity" min="0" max="100" step="0.01" value="{{$elements->quantity_per_unit}}">
-                                            </div>
+                                            <div class="form-group row pb-4">
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" name="color[]" id="color" placeholder="color" value="{{$elements->color ?? ""}}">
+                                                </div>
 
-                                            <div class="col-md-2">
-                                                <input onchange="calculateTotalQuantity()" type="number" class="form-control" name="wastage[]" id="wastage" min="1" max="100" step="0.01" value="{{$elements->waste_percentage}}">
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" name="type[]" id="type" placeholder="type" value="{{$elements->type ?? ""}}">
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div class="form-group row pb-4">
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" name="color[]" id="color" placeholder="color" value="{{$elements->color}}">
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" name="type[]" id="type" placeholder="type" value="{{$elements->type}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                    <?php
+                                        }
+                                    }
+                                    else{
+                                        echo "<div class='text-center pb-3'><b>No elements added for this order</b></div>";
+                                    }
+                                ?>
                                 <div class="row mt-3 mb-3 element_add_area">
                                     <div class="col-md-2 offset-4">
                                         <a href="javascript:;" class="btn btn-outline-info add_element"><i class="fa fa-plus" aria-hidden="true"> </i> Add Elements</a>
