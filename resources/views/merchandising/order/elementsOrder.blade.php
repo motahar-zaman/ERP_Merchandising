@@ -91,6 +91,7 @@
             let remarks = $("#Note"+elementId).val();
             let timelineDays = $("#timelineDays"+elementId).val();
             if(timelineDays === ""){
+                $('#Order'+elementId).prop('checked', false);
                 alert("Please insert timeline days.");
                 return;
             }
@@ -103,6 +104,11 @@
                     'X-CSRF-Token': '{{ csrf_token() }}',
                 },
                 success: function(response){
+                    $('#Order'+elementId).prop('checked', true);
+                    if(status === 2){
+                        $('#Receive'+elementId).prop('checked', true);
+                    }
+                    alert("Successfully updated");
                     console.log(response.status, response["message"]);
                 },
                 error: function(response){
