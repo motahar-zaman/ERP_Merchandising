@@ -46,7 +46,7 @@
                                                     <input type="text" class="form-control" name="element_name[]" id="element_name" value="{{$elements->element_name ?? ""}}" required>
                                                 </div>
                                                 <div class="col-md-3 pl-2">
-                                                    <select name="size[]" id="size" class="mr-1">
+                                                    <select name="size[]" id="size" class="mr-1" required>
                                                         <option value=""></option>
                                                         @foreach($sizeQuantity as $size)
                                                             <option value="{{$size->id}}" {{$elements->size_quantity_id == $size->id ? "selected" : ''}}>{{$size->size_name}} - {{$size->quantity}}</option>
@@ -55,11 +55,11 @@
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <input type="number" class="form-control" name="quantity[]" id="quantity" min="0" max="100" step="0.01" value="{{$elements->quantity_per_unit ?? ""}}">
+                                                    <input type="number" class="form-control" name="quantity[]" id="quantity" min="0" max="100" step="0.01" value="{{$elements->quantity_per_unit ?? ""}}" required>
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <input onchange="calculateTotalQuantity()" type="number" class="form-control" name="wastage[]" id="wastage" min="1" max="100" step="0.01" value="{{$elements->waste_percentage ?? ""}}">
+                                                    <input onchange="calculateTotalQuantity()" type="number" class="form-control" name="wastage[]" id="wastage" min="1" max="100" step="0.01" value="{{$elements->waste_percentage ?? ""}}" required>
                                                 </div>
                                             </div>
 
@@ -119,7 +119,7 @@
                     '<input type="text" class="form-control" name="element_name[]" id="element_name" placeholder="element name" value="" required>' +
                     '</div>' +
                     '<div class="col-md-3 pl-2">' +
-                    '<select name="size[]" id="size" placeholder="select size" class="mr-1">' +
+                    '<select name="size[]" id="size" placeholder="select size" class="mr-1" required>' +
                     '<option value=""></option>' +
                     '@foreach($sizeQuantity as $size)' +
                     '<option value="{{$size->id}}">{{$size->size_name}} - {{$size->quantity}}</option>' +
@@ -128,11 +128,11 @@
                     '</div>' +
 
                     '<div class="col-md-2">' +
-                    '<input type="number" class="form-control" name="quantity[]" id="quantity" placeholder="quantity/unit" min="0" max="100" step="0.01" value="">' +
+                    '<input type="number" class="form-control" name="quantity[]" id="quantity" placeholder="quantity/unit" min="0" max="100" step="0.01" value="" required>' +
                     '</div>' +
 
                     '<div class="col-md-2">' +
-                    '<input onchange="calculateTotalQuantity()" type="number" class="form-control" name="wastage[]" id="wastage" placeholder="wastage %" min="1" max="100" step="0.01" value="">' +
+                    '<input onchange="calculateTotalQuantity()" type="number" class="form-control" name="wastage[]" id="wastage" placeholder="wastage %" min="1" max="100" step="0.01" value="" required>' +
                     '</div>' +
                     '</div>' +
 
