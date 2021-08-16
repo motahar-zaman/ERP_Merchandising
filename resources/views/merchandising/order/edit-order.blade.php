@@ -60,7 +60,7 @@
                                     <div class="form-group row {{ $errors->has('buyer') ? 'has-error' : '' }}">
                                         <label for="buyer" class="col-md-3 offset-1 control-label">Buyer Select<span class="text-danger">*</span></label>
                                         <div class="col-md-5 pl-0 pr-0">
-                                            <select name="buyer" placeholder="Select a buyer">
+                                            <select name="buyer" placeholder="Select a buyer" required>
                                                 <option value=""></option>
                                                 @foreach($buyers as $buyer)
                                                     <option value="{{$buyer->id}}" <?php if($order->buyer_id == $buyer->id) echo "selected"?>>{{$buyer->name}}</option>
