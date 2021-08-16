@@ -36,7 +36,7 @@
                                         <label for="style_name" class="col-md-3 offset-1 control-label">Style Name<span class="text-danger">*</span></label>
                                         <div class="col-md-8 pl-0 pr-0">
                                             <input type="hidden" name="orderId" id="orderId" value="{{$order->id}}">
-                                            <input type="text" class="form-control" name="style_name" id="style_name" placeholder="style name" value="{{$order->style_name}}" required>
+                                            <input type="text" class="form-control" name="style_name" id="style_name" placeholder="style name" value="{{$order->style_name ?? ""}}" required>
                                             @if($errors->has('style_name'))<span class="help-block text-danger">{{ $errors->first('style_name') }}</span>@endif
                                         </div>
                                     </div>
@@ -44,7 +44,7 @@
                                     <div class="form-group row {{ $errors->has('order_no') ? 'has-error' : '' }}">
                                         <label for="order_no" class="col-md-3 offset-1 control-label">Order No<span class="text-danger">*</span></label>
                                         <div class="col-md-8 pl-0 pr-0">
-                                            <input type="text" class="form-control" name="order_no" id="order_no" placeholder="order no" value="{{$order->order_no}}" required>
+                                            <input type="text" class="form-control" name="order_no" id="order_no" placeholder="order no" value="{{$order->order_no ?? ""}}" required>
                                             @if($errors->has('order_no'))<span class="help-block text-danger">{{ $errors->first('order_no') }}</span>@endif
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                     <div class="form-group row {{ $errors->has('description') ? 'has-error' : '' }}">
                                         <label for="description" class="col-md-3 offset-1 control-label">Description<span class="text-danger">*</span></label>
                                         <div class="col-md-8 pl-0 pr-0">
-                                            <input type="text" class="form-control" name="description" id="description" placeholder="description" value="{{$order->order_name}}" required>
+                                            <input type="text" class="form-control" name="description" id="description" placeholder="description" value="{{$order->order_name ?? ""}}" required>
                                             @if($errors->has('description'))<span class="help-block text-danger">{{ $errors->first('description') }}</span>@endif
                                         </div>
                                     </div>
@@ -81,7 +81,7 @@
                                     <div class="form-group row">
                                         <label for="delivery_date" class="col-md-3 offset-1 control-label">Delivery Date<span class="text-danger">*</span></label>
                                         <div class="col-md-4 pl-0 pr-0">
-                                            <input onchange="calculateDayRange()" type="date" class="form-control" name="delivery_date" id="delivery_date" placeholder="dd-mm-yyyy" value="{{$order->delivery_date}}" required>
+                                            <input onchange="calculateDayRange()" type="date" class="form-control" name="delivery_date" id="delivery_date" placeholder="dd-mm-yyyy" value="{{$order->delivery_date ?? ""}}" required>
                                             @if($errors->has('delivery_date'))<span class="help-block text-danger">{{ $errors->first('delivery_date') }}</span>@endif
                                         </div>
                                         <?php
@@ -90,7 +90,7 @@
                                             $diff = ceil(($to - $from) / (3600 * 24));
                                         ?>
                                         <div class="col-md-4 pl-4">
-                                            <label>Left <span id="day_range">{{$diff}}</span> days </label>
+                                            <label>Left <span id="day_range">{{$diff ?? 0}}</span> days </label>
                                         </div>
                                     </div>
 
@@ -124,10 +124,10 @@
                                                 <label for="order_quantity" class="col-md-3 offset-1 control-label">Size & Quantity</label>
                                                 <div class="col-md-4 pl-0">
                                                     <input type="hidden" name="sizeId[]" value="{{$size->id}}">
-                                                    <input type="text" class="form-control" name="size[]" placeholder="size" value="{{$size->size_name}}">
+                                                    <input type="text" class="form-control" name="size[]" placeholder="size" value="{{$size->size_name ?? ""}}">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input onchange="totalQuantity()" class="form-control quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="{{$size->quantity}}">
+                                                    <input onchange="totalQuantity()" class="form-control quantity" type="number" name="quantity[]" step="1" placeholder="quantity" value="{{$size->quantity ?? ""}}">
                                                 </div>
                                             </div>
                                     <?php
@@ -135,7 +135,7 @@
                                     ?>
 
                                     <div class="row element_add_area justify-content-center mb-3">
-                                        <label>Total Quantity = <span id="total_quantity">{{$totalQuantity}}</span> Pcs</label>
+                                        <label>Total Quantity = <span id="total_quantity">{{$totalQuantity ?? ""}}</span> Pcs</label>
                                     </div>
 
                                     <div class="row justify-content-center mb-3">

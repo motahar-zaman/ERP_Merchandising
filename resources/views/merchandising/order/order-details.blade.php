@@ -33,28 +33,28 @@
                             <div class="form-group row">
                                 <label for="style_name" class="col-md-3 offset-1 control-label">Style Name</label>
                                 <div class="col-md-8 pl-0 pr-0">
-                                    <span>{{$order->style_name}}</span>
+                                    <span>{{$order->style_name ?? ""}}</span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="order_no" class="col-md-3 offset-1 control-label">Order No</label>
                                 <div class="col-md-8 pl-0 pr-0">
-                                    <span>{{$order->order_no}}</span>
+                                    <span>{{$order->order_no ?? ""}}</span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="description" class="col-md-3 offset-1 control-label">Description<span class="text-danger">*</span></label>
                                 <div class="col-md-8 pl-0 pr-0">
-                                    <span>{{$order->order_name}}</span>
+                                    <span>{{$order->order_name ?? ""}}</span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="buyer" class="col-md-3 offset-1 control-label">Buyer Name</label>
                                 <div class="col-md-3 pl-0 pr-0">
-                                    <span>{{$order->buyer->name}}</span>
+                                    <span>{{$order->buyer->name ?? ""}}</span>
                                 </div>
                             </div>
 
@@ -69,17 +69,17 @@
                             <div class="form-group row">
                                 <label for="buyer" class="col-md-3 offset-1 control-label">Order Date</label>
                                 <div class="col-md-3 pl-0 pr-0">
-                                    <span>{{$orderDate}}</span>
+                                    <span>{{$orderDate ?? ""}}</span>
                                 </div>
                             </div>
 
                             <div class="form-group row {{ $errors->has('delivery_date') ? 'has-error' : '' }}">
                                 <label for="delivery_date" class="col-md-3 offset-1 control-label">Delivery Date</label>
                                 <div class="col-md-4 pl-0 pr-0">
-                                    <span>{{$order->delivery_date}}</span>
+                                    <span>{{$order->delivery_date ?? ""}}</span>
                                 </div>
                                 <div class="col-md-4 pl-0 pr-0">
-                                    <label>Left <span id="day_range">{{$days_between}}</span> days </label>
+                                    <label>Left <span id="day_range">{{$days_between ?? 0}}</span> days </label>
                                 </div>
                             </div>
 
@@ -99,9 +99,9 @@
                                                 $total += $size->quantity;
                                                 ?>
                                                 <tr>
-                                                    <td>{{$size->size_name}}</td>
-                                                    <td>{{$size->quantity}}</td>
-                                                    <td>{{$total }}</td>
+                                                    <td>{{$size->size_name ?? ""}}</td>
+                                                    <td>{{$size->quantity ?? ""}}</td>
+                                                    <td>{{$total ?? ""}}</td>
                                                 </tr>
                                             <?php
                                               }
@@ -137,17 +137,17 @@
                                             $quantity = $element->sizeQuantity["quantity"];
                                         ?>
                                         <tr>
-                                            <td>{{$element->element_name}}</td>
-                                            <td>{{$element->sizeQuantity["size_name"]}}</td>
-                                            <td>{{$quantity}}</td>
-                                            <td>{{$element->quantity_per_unit}}</td>
-                                            <td>{{$element->waste_percentage}} %</td>
+                                            <td>{{$element->element_name ?? ""}}</td>
+                                            <td>{{$element->sizeQuantity["size_name"] ?? ""}}</td>
+                                            <td>{{$quantity ?? ""}}</td>
+                                            <td>{{$element->quantity_per_unit ?? ""}}</td>
+                                            <td>{{$element->waste_percentage ?? ""}} %</td>
                                             <td>{{ceil($element->waste_percentage * $element->quantity_per_unit * $quantity)}}</td>
                                             <td>{{$element->status > 0 ? date("Y-m-d", strtotime($element->order_place)) : "No"}}</td>
                                             <td>{{$element->status > 1 ? date("Y-m-d", strtotime($element->order_receive)) : "No"}}</td>
-                                            <td>{{$element->color}}</td>
-                                            <td>{{$element->type}}</td>
-                                            <td>{{$element->note}}</td>
+                                            <td>{{$element->color ?? ""}}</td>
+                                            <td>{{$element->type ?? ""}}</td>
+                                            <td>{{$element->note ?? ""}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
