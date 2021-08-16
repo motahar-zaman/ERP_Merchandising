@@ -192,10 +192,10 @@ class OrderController extends Controller
 
         $element = OrderElement::find($elementId);
         $element->status = $status;
-        $element->timeline_days = $request["timelineDays"];
         $element->note = $request["remarks"];
 
         if($status == 1){
+            $element->timeline_days = $request["timelineDays"];
             $element->order_place = date("Y-m-d H:i:s");
         }
         else{
