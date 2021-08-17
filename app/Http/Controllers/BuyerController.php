@@ -32,8 +32,20 @@ class BuyerController extends Controller
             'buyer_code' => 'required',
             'name' => 'required|min:4',
             'email' => 'email|unique:buyers',
+            'phone' => 'required',
+            'bank_details' => 'required',
+            'address' => 'required',
         ]);
-        Buyer::query()->create($request->all());
+
+        $buyer = new Buyer();
+        $buyer->buyer_code = $request['buyer_code'];
+        $buyer->name = $request['name'];
+        $buyer->email = $request['email'];
+        $buyer->phone = $request['phone'];
+        $buyer->bank_details = $request['bank_details'];
+        $buyer->address = $request['address'];
+        $buyer->save();
+
         return redirect('merchandise/manage-buyer');
     }
 

@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Well Group | Add Buyer')
+@section('title','Add Buyer')
 
 @section('content')
 
@@ -25,19 +25,18 @@
     <section class="content">
         <div class="col-12">
             <div class="card"><br>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="card card-info">
-                                <div class="card-header">
-                                    <h3 class="card-title">Create Buyer</h3>
-                                </div>
-                                <!-- form start -->
-                                {{ Form::model($buyer= new \App\Buyer,['url'=>'merchandise/buyer-store','method'=>'post']) }}
-                                     @include('merchandising.buyer.form-buyer',['submitButtonText'=>'Save'])
-                                {{ Form::close()}}
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Create Buyer</h3>
                             </div>
+                            <!-- form start -->
+                            {{ Form::model($buyer= new \App\Buyer,['url'=>'merchandise/buyer-store','method'=>'post']) }}
+                                 @include('merchandising.buyer.form-buyer',['submitButtonText'=>'Save'])
+                            {{ Form::close()}}
                         </div>
+                    </div>
                 </div>
                 <!-- /.row -->
             </div>
