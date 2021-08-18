@@ -81,7 +81,6 @@ class OrderController extends Controller
         $order->delivery_date = $data["delivery_date"] ?? null;
         $order->quantity = $orderQuantity;
         $order->status = 1;
-        $order->created_at = date("Y-m-d H:i:s");
         $order->updated_at = date("Y-m-d H:i:s");
 
         $order->save();
@@ -93,13 +92,13 @@ class OrderController extends Controller
                 }
                 else{
                     $size = new OrderSizeQuantity();
+                    $size->created_at = date("Y-m-d H:i:s");
                 }
 
                 $size->order_id = $order->id;
                 $size->size_name = $sizeName;
                 $size->quantity = $data["quantity"][$index] + 0;
                 $size->status = 1;
-                $size->created_at = date("Y-m-d H:i:s");
                 $size->updated_at = date("Y-m-d H:i:s");
 
                 $size->save();
@@ -153,6 +152,7 @@ class OrderController extends Controller
             }
             else{
                 $element = new OrderElement();
+                $element->created_at = date("Y-m-d H:i:s");
             }
 
             $element->order_id = $data["order_id"] ?? null;
@@ -163,7 +163,6 @@ class OrderController extends Controller
             $element->color = $data["color"][$i] ?? null;
             $element->type = $data["type"][$i] ?? null;
             $element->status = 0;
-            $element->created_at = date("Y-m-d H:i:s");
             $element->updated_at = date("Y-m-d H:i:s");
 
             $element->save();
@@ -177,7 +176,7 @@ class OrderController extends Controller
     }
 
     public function orderList(){
-        $order = Order::where("status", 1)->get();
+        $order = Order::where("status", 1)->orderBy('created_at', "DESC")->get();
         return view('merchandising/order/order-list')-> with(['orders'=> $order]);
     }
 
