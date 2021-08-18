@@ -51,9 +51,9 @@
                                             <td>{{$element->element_name}}</td>
                                             <td>{{$element->sizeQuantity["size_name"]}}</td>
                                             <td>{{ceil($element->waste_percentage * $element->quantity_per_unit * $element->sizeQuantity["quantity"])}}</td>
-                                            <td><input onchange="elementStatusUpdate({{$element->id}}, 1)" type="checkbox" id="Order{{$element->id}}" name="vehicle1" value="{{$element->id}}" <?php if($element->status >= 1) echo "checked"?>></td>
+                                            <td><input onchange="elementStatusUpdate({{$element->id}}, 1)" type="checkbox" id="Order{{$element->id}}" name="vehicle1" value="{{$element->id}}" <?php if($element->status >= 1) echo "checked disabled"?>></td>
                                             <td><input type="number" class="form-control" id="timelineDays{{$element->id}}" name="timelineDays" value="{{$element->timeline_days}}" step="1"></td>
-                                            <td><input onchange="elementStatusUpdate({{$element->id}}, 2)" type="checkbox" id="Receive{{$element->id}}" name="vehicle1" value="{{$element->id}}" <?php if($element->status >= 2) echo "checked"?>></td>
+                                            <td><input onchange="elementStatusUpdate({{$element->id}}, 2)" type="checkbox" id="Receive{{$element->id}}" name="vehicle1" value="{{$element->id}}" <?php if($element->status >= 2) echo "checked disabled"?>></td>
                                             <td><input type="text" class="form-control" id="Note{{$element->id}}" name="vehicle1" value="{{$element->note}}"></td>
                                         </tr>
                                     @endforeach
