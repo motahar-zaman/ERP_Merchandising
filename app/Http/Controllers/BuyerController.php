@@ -18,7 +18,7 @@ class BuyerController extends Controller
 
     public function index()
     {
-        $buyers=Buyer::all();
+        $buyers = Buyer::all();
         return view('merchandising.buyer.manage-buyer',compact('buyers'));
     }
 
