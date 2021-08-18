@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','AdminLTE')
+@section('title','Edit Buyer')
 
 @section('content')
 

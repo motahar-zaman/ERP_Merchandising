@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Well Group | Manage Buyer')
+@section('title','Manage Buyer')
 
 @section('content')
 
@@ -28,26 +28,36 @@
                 <div class="card">
                     @can('merchandiser')
                     <div class="card-header" >
-                        <button class="btn btn-success"><a href="{{url('merchandise/add-buyer')}}"><h6 style="color: white">Add Buyer</h6></a></button>
+                        <button class="btn btn-success">
+                            <a href="{{url('merchandise/add-buyer')}}">
+                                <h6 style="color: white">Add Buyer</h6>
+                            </a>
+                        </button>
                     </div>
                     @endcan
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                @can('merchandiser')
-                                <th>Action</th>
-                                @endcan
-                            </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone No</th>
+                                    <th>Address</th>
+                                    <th>Bank Info</th>
+                                    @can('merchandiser')
+                                    <th>Action</th>
+                                    @endcan
+                                </tr>
                             </thead>
                             <tbody>
                             @foreach($buyers as $buyer)
                                 <tr role="row" class="odd">
                                     <td>{{ $buyer->name }}</td>
                                     <td>{{ $buyer->email }}</td>
+                                    <td>{{ $buyer->phone }}</td>
+                                    <td>{{ $buyer->address }}</td>
+                                    <td>{{ $buyer->bank_details }}</td>
                                     @can('merchandiser')
                                     <td>
                                         {{ Form::open(['action'=>['BuyerController@destroy',$buyer->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
