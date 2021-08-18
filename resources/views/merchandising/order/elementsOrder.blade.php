@@ -1,6 +1,6 @@
 @extends('layouts.fixed')
 
-@section('title','Place Elements Order')
+@section('title','Purchase Booking')
 
 @section('content')
 
@@ -8,13 +8,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Place Elements Order</h1>
+                    <h1>Purchase Booking</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">Home</li>
                         <li class="breadcrumb-item">Order</li>
-                        <li class="breadcrumb-item active">Place Elements Order</li>
+                        <li class="breadcrumb-item active">Purchase Booking</li>
                     </ol>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="row justify-content-center">
                     <div class="card-info" style="width:95%">
                         <div class="card-header">
-                            <h3 class="card-title">Place Elements Order</h3>
+                            <h3 class="card-title">Update Purchase Booking</h3>
                         </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover text-center">
@@ -36,7 +36,7 @@
                                         <td>Element Name</td>
                                         <td>Size</td>
                                         <td>Quantity</td>
-                                        <td>Order</td>
+                                        <td>Purchase</td>
                                         <td style="width: 12%">Timeline days</td>
                                         <td>Receive</td>
                                         <td>Remarks</td>

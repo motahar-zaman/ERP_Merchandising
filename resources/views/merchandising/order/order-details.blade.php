@@ -124,7 +124,7 @@
                                         <td>Quantity/Unit</td>
                                         <td>Wastage</td>
                                         <td>Need</td>
-                                        <td>Order</td>
+                                        <td>Purchase</td>
                                         <td>Receive</td>
                                         <td>Color</td>
                                         <td>Type</td>
@@ -166,7 +166,7 @@
                             </div>
                             <div class="">
                                 <a href="{{url('elements-order/'.$order->id)}}" class="btn btn-outline-info">
-                                    Update Elements Order
+                                    Update Purchase Booking
                                 </a>
                             </div>
                         </div>
