@@ -89,7 +89,7 @@
                                         <tr>
                                             <td>Size Name</td>
                                             <td>Quantity</td>
-                                            <td>Total Quantity</td>
+                                            <td>Cumulative Quantity</td>
                                         </tr>
                                     </thead>
                                     <tbody>
