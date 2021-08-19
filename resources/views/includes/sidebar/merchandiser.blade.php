@@ -5,6 +5,12 @@
     </a>
     <ul class="nav nav-treeview" style="background-color: #292929">
         <li class="nav-item">
+            <a href="{{ url('merchandiser-list') }}" class="nav-link {{ isActive('merchandiser-list') }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Merchandiser</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ url('merchandise/manage-buyer') }}" class="nav-link {{ isActive('merchandise/manage-buyer') }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Buyer</p>
