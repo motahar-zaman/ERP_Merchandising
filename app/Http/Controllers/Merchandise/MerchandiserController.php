@@ -33,4 +33,30 @@ class MerchandiserController extends Controller
         $merchandisers = Merchandiser::where("status", 1)->orderBy('created_at', "DESC")->get();
         return view('merchandising/merchandiser/merchandiser-list')-> with(['merchandisers'=> $merchandisers]);
     }
+
+    public function editMerchandiser($merchandiserId){
+        $data = Merchandiser::find($merchandiserId);
+        return view('merchandising/merchandiser/edit-merchandiser', ['merchandiser' => $data]);
+    }
+
+    public function editMerchandiserAction(Request $request){
+        $merchandiser = Merchandiser::find($request['merchandiserId']);
+
+        $merchandiser->name = $request['name'] ?? '';
+        $merchandiser->email = $request['email'] ?? '';
+        $merchandiser->phone_no = $request['phone'] ?? '';
+        $merchandiser->designation = $request['designation'] ?? '';
+        $merchandiser->remarks = $request['remarks'] ?? '';
+        $merchandiser->updated_at = date("Y-m-d H:i:s");
+
+        $merchandiser->save();
+
+        return redirect()->route('merchandiser-list');
+    }
+
+    public function deleteMerchandiser($id){
+        $merchandiser = Merchandiser::query()->findOrFail($id);
+        $merchandiser->delete();
+        return redirect('merchandiser-list');
+    }
 }
