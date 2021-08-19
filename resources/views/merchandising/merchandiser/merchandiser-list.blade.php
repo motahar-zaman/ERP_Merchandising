@@ -42,6 +42,7 @@
                                     <td>Designation</td>
                                     <td>Remarks</td>
                                     <td>Created</td>
+                                    <td>Action</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,6 +54,14 @@
                                         <td class="pl-2">{{$merchandiser->designation}}</td>
                                         <td class="pl-2">{{$merchandiser->remarks}}</td>
                                         <td class="pl-2">{{date('d-m-Y', strtotime($merchandiser->created_at))}}</td>
+                                        <td class="pl-2">
+                                            {{ Form::open(['action'=>['Merchandise\MerchandiserController@deleteMerchandiser', $merchandiser->id],'method'=>'delete','onsubmit'=>'return confirmDelete()']) }}
+                                            <a href="{{ action('Merchandise\MerchandiserController@editMerchandiser',$merchandiser->id) }}">
+                                                <i class="fa text-success fa-pencil-alt"></i>
+                                            </a> &nbsp;  &nbsp;
+                                            <button type="submit" class="text-danger"><i class="fa fas fa-trash"></i></button>
+                                            {{ Form::close() }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
