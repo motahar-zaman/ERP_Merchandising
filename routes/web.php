@@ -470,6 +470,9 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('elements-status-update', 'Merchandise\OrderController@elementsStatusUpdate')->name('elements-status-update');
     Route::get('create-merchandiser', 'Merchandise\MerchandiserController@index')->name('merchandiser-ui');
     Route::post('create-merchandiser', 'Merchandise\MerchandiserController@storeMerchandiser')->name('merchandiser-create');
+    Route::get('edit-merchandiser/{id}', 'Merchandise\MerchandiserController@editMerchandiser')->name('merchandiser-edit-ui');
+    Route::post('edit-merchandiser/{id}', 'Merchandise\MerchandiserController@editMerchandiserAction')->name('merchandiser-edit-action');
+    Route::delete('delete-merchandiser/{id}', 'Merchandise\MerchandiserController@deleteMerchandiser')->name('merchandiser-delete');
     Route::get('merchandiser-list', 'Merchandise\MerchandiserController@merchandiserList')->name('merchandiser-list');
 });
 
