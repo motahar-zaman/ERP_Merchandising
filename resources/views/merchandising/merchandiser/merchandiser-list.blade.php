@@ -24,15 +24,13 @@
     <section class="content">
         <div class="col-12">
             <div class="card">
-                @can('merchandiser')
-                    <div class="card-header" >
-                        <button class="btn btn-success">
-                            <a href="{{url('create-merchandiser')}}">
-                                <h6 style="color: white">Add Merchandiser</h6>
-                            </a>
-                        </button>
-                    </div>
-                @endcan
+                <div class="card-header" >
+                    <button class="btn btn-success">
+                        <a href="{{url('create-merchandiser')}}">
+                            <h6 style="color: white">Add Merchandiser</h6>
+                        </a>
+                    </button>
+                </div>
                 <div class="row">
                     <div class="card-body table-responsive">
                         <table id="merchandiserTable" class="table table-hover text-center">
